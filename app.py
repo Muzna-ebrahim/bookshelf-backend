@@ -122,9 +122,25 @@ class BookByID(Resource):
         db.session.commit()
         return {}, 204
 
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+        
+        if not username or not password:
+            return {'error': 'Username and password required'}, 400
+        
+        user = User.query.filter_by(username=username).first()
+        if user and user.password == password:
+            return user.to_dict(), 200
+        else:
+            return {'error': 'Invalid username or password'}, 401
+
 # Add resources to API
 api.add_resource(Users, '/users')
 api.add_resource(UserByID, '/users/<int:id>')
+api.add_resource(Login, '/login')
 api.add_resource(Authors, '/authors')
 api.add_resource(AuthorByID, '/authors/<int:id>')
 api.add_resource(Categories, '/categories')
