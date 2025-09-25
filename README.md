@@ -33,12 +33,17 @@ python app.py
 
 API runs on `http://localhost:5000`
 
-## Contributing
-Fork the repository, create a feature branch, and submit a pull request.
-
 ## License
- This project has an MIT License
+This project is licensed under the MIT License 
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Collaboration
+This project was created under the collaboration of Muzna and Derrick . We are open to having more collaborators and contributions 
 
 ## Author
 Username : Muzna Ebrahim 
-Email: ebrahimmuznah98@gmail.com
+Email : ebrahimmuznah98@gmail.com 
+
+Username : Derrickgabe 
