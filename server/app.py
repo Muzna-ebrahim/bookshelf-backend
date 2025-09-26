@@ -9,6 +9,24 @@ from flask_restful import Resource
 # Local imports
 from .config import app, db, api
 from .models import User, Author, Book, Review, UserBookCollection, Category
+from flask import jsonify
+
+# Root route
+@app.route('/')
+def home():
+    return jsonify({
+        'message': 'Bookshelf Backend API',
+        'status': 'running',
+        'endpoints': {
+            'users': '/users',
+            'authors': '/authors', 
+            'books': '/books',
+            'categories': '/categories',
+            'reviews': '/reviews',
+            'collections': '/collections',
+            'login': '/login'
+        }
+    })
 
 # Views go here!
 
