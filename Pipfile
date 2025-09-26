@@ -12,6 +12,7 @@ Flask-SQLAlchemy = "*"
 sqlalchemy-serializer = "*"
 Faker = "*"
 python-dotenv = "*"
+gunicorn = "*"
 
 [dev-packages]
 
