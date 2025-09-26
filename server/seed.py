@@ -4,23 +4,19 @@
 from random import randint, choice as rc
 
 # Local imports
-from app import app
-from models import db, User, Author, Book, Review, UserBookCollection, Category
+from config import app, db
+from models import User, Author, Book, Review, UserBookCollection, Category
 
-if __name__ == '__main__':
-    with app.app_context():
-        print("Starting seed...")
-        
-        # Create tables
-        db.create_all()
-        
-        # Clear existing data
-        UserBookCollection.query.delete()
-        Review.query.delete()
-        Book.query.delete()
-        Author.query.delete()
-        Category.query.delete()
-        User.query.delete()
+def seed_data():
+    print("Starting seed...")
+    
+    # Clear existing data
+    UserBookCollection.query.delete()
+    Review.query.delete()
+    Book.query.delete()
+    Author.query.delete()
+    Category.query.delete()
+    User.query.delete()
         
         # Create users (admins)
         admin_data = [
@@ -112,9 +108,14 @@ if __name__ == '__main__':
         db.session.add_all(collections)
         db.session.commit()
         
-        print("Seed completed!")
-        print(f"Created {len(users)} users")
-        print(f"Created {len(authors)} authors")
-        print(f"Created {len(books)} books")
-        print(f"Created {len(reviews)} reviews")
-        print(f"Created {len(collections)} collections")
+    print("Seed completed!")
+    print(f"Created {len(users)} users")
+    print(f"Created {len(authors)} authors")
+    print(f"Created {len(books)} books")
+    print(f"Created {len(reviews)} reviews")
+    print(f"Created {len(collections)} collections")
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+        seed_data()
