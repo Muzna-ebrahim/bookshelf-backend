@@ -3,8 +3,7 @@ Flask-RESTful==0.3.10
 Flask-CORS==6.0.1
 Flask-Migrate==4.1.0
 Flask-SQLAlchemy==3.1.1
-SQLAlchemy==2.0.29
-sqlalchemy-serializer==1.4.22
+SQLAlchemy>=2.0.16
 Faker==37.8.0
 python-dotenv==1.1.1
 gunicorn==23.0.0
