@@ -6,8 +6,8 @@ from server.config import app, db
 # Import all models to ensure they're registered
 from server.models import User, Author, Book, Review, UserBookCollection, Category
 
-# Import routes
-from server.app import *
+# Import routes - this registers all routes including the root route
+import server.app
 
 if __name__ == '__main__':
     with app.app_context():
