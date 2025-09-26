@@ -4,8 +4,8 @@
 from random import randint, choice as rc
 
 # Local imports
-from config import app, db
-from models import User, Author, Book, Review, UserBookCollection, Category
+from .config import app, db
+from .models import User, Author, Book, Review, UserBookCollection, Category
 
 def seed_data():
     print("Starting seed...")
