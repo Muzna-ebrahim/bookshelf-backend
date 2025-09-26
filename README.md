@@ -24,9 +24,18 @@ Flask REST API for managing books, authors, reviews, and user collections.
 - `/collections` - User collection CRUD
 
 ## Setup
+
+**Option 1: Using Pipenv (recommended)**
 ```bash
 pipenv install
 pipenv shell
+python seed.py
+python app.py
+```
+
+**Option 2: Using pip**
+```bash
+pip install -r requirements.txt
 python seed.py
 python app.py
 ```
