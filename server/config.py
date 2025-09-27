@@ -29,4 +29,4 @@ db.init_app(app)
 api = Api(app)
 
 # Instantiate CORS
-CORS(app)
+CORS(app, origins=['https://frontend-ecfratwiq-derrickgabes-projects.vercel.app', 'http://localhost:3000', 'http://localhost:5173'], supports_credentials=True)
