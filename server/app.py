@@ -40,6 +40,15 @@ def create_resource(model, name, required_fields, optional_fields=None):
         def post(self):
             data = request.get_json()
             try:
+                # Special handling for User model
+                if model == User:
+                    # Check if username already exists
+                    if User.query.filter_by(username=data['username']).first():
+                        return {'error': 'Username already exists'}, 400
+                    # Check if email already exists
+                    if User.query.filter_by(email=data['email']).first():
+                        return {'error': 'Email already exists'}, 400
+                
                 kwargs = {field: data[field] for field in required_fields}
                 kwargs.update({field: data.get(field) for field in optional_fields})
                 item = model(**kwargs)
@@ -47,6 +56,11 @@ def create_resource(model, name, required_fields, optional_fields=None):
                 db.session.commit()
                 return item.to_dict(), 201
             except Exception as e:
+                if 'UNIQUE constraint failed' in str(e):
+                    if 'username' in str(e):
+                        return {'error': 'Username already exists'}, 400
+                    elif 'email' in str(e):
+                        return {'error': 'Email already exists'}, 400
                 return {'error': str(e)}, 400
     
     class ResourceByID(Resource):
@@ -150,7 +164,7 @@ class Login(Resource):
             return {'error': 'Username and password required'}, 400
         
         user = User.query.filter_by(username=username).first()
-        if user and user.password == password:
+        if user and str(user.password).strip() == str(password).strip():
             return user.to_dict(), 200
         else:
             return {'error': 'Invalid username or password'}, 401
