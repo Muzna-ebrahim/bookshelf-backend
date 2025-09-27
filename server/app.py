@@ -170,5 +170,9 @@ api.add_resource(ReviewByID, '/reviews/<int:id>')
 api.add_resource(Collections, '/collections')
 api.add_resource(CollectionByID, '/collections/<int:id>')
 
+# Ensure database tables are created
+with app.app_context():
+    db.create_all()
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
