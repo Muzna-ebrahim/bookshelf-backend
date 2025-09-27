@@ -20,8 +20,10 @@ def seed_if_empty():
             # Create sample users
             admin = User(username="admin", email="admin@example.com", password="admin", role="admin")
             reader = User(username="reader", email="reader@example.com", password="reader", role="reader")
+            derrick = User(username="derrick", email="derrickg844@gmail.com", password="password123", role="reader")
             db.session.add(admin)
             db.session.add(reader)
+            db.session.add(derrick)
             db.session.commit()
             
             # Create categories
